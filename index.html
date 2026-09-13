@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TECHZONE — магазин техники</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            font-size: 14px;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            width: 100%;
+            height: 64px;
+
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 40px;
+            gap: 35px;
+        }
+
+        .logo {
+            font-size: 19px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #f4511e;
+        }
+
+        .search {
+            flex: 1;
+            max-width: 650px;
+            position: relative;
+        }
+
+        .search input {
+            width: 100%;
+            height: 38px;
+
+            background: #f3f3f3;
+            border: 1px solid #e5e5e5;
+            border-radius: 7px;
+
+            padding: 0 40px 0 13px;
+
+            outline: none;
+            font-size: 13px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 13px;
+            top: 10px;
+
+            color: #777;
+            font-size: 16px;
+        }
+
+        .header-right {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+            gap: 22px;
+
+            white-space: nowrap;
+        }
+
+        .header-link {
+            color: #444;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .cart {
+            background: #222;
+            color: #fff;
+
+            padding: 9px 14px;
+            border-radius: 6px;
+
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            width: 100%;
+            max-width: none;
+
+            margin: 0;
+            padding: 30px 40px;
+        }
+
+        .top-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .top-line h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .products-count {
+            color: #888;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .sort {
+            height: 35px;
+
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+
+            padding: 0 10px;
+
+            font-size: 13px;
+            color: #444;
+
+            outline: none;
+        }
+
+        /* ================= CATALOG ================= */
+
+        .catalog {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+
+            gap: 25px;
+        }
+
+        /* ================= FILTER ================= */
+
+        .filters {
+            background: #fff;
+
+            border: 1px solid #e2e2e2;
+            border-radius: 8px;
+
+            padding: 18px;
+
+            height: fit-content;
+
+            position: sticky;
+            top: 15px;
+        }
+
+        .filters-title {
+            font-size: 16px;
+            font-weight: 600;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #eee;
+
+            margin-bottom: 18px;
+        }
+
+        .filter-section {
+            padding-bottom: 17px;
+            margin-bottom: 17px;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 12px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin: 9px 0;
+
+            color: #555;
+            font-size: 13px;
+
+            cursor: pointer;
+        }
+
+        .filter-option input {
+            width: 14px;
+            height: 14px;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 7px;
+        }
+
+        .price-inputs input {
+            width: 50%;
+            height: 32px;
+
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+            padding: 0 7px;
+
+            font-size: 12px;
+            outline: none;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 15px;
+        }
+
+        .product {
+            background: #fff;
+
+            border: 1px solid #e2e2e2;
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            transition:
+                box-shadow .2s,
+                transform .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 20px rgba(0, 0, 0, .08);
+        }
+
+        /* ================= PRODUCT IMAGE ================= */
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+
+            background: #eee;
+
+            display: block;
+
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            /*
+                COVER заполняет всю карточку.
+                Теперь белых полос по бокам не будет.
+            */
+            object-fit: cover;
+
+            object-position: center;
+
+            transition: transform .25s;
+        }
+
+        .product:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        /* ================= LABELS ================= */
+
+        .sale {
+            position: absolute;
+
+            top: 10px;
+            left: 10px;
+
+            background: #f4511e;
+            color: #fff;
+
+            padding: 4px 7px;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            border-radius: 4px;
+
+            z-index: 5;
+        }
+
+        .favorite {
+            position: absolute;
+
+            top: 9px;
+            right: 9px;
+
+            width: 29px;
+            height: 29px;
+
+            background: #fff;
+
+            border: 1px solid #ddd;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+            color: #777;
+
+            cursor: pointer;
+
+            z-index: 5;
+        }
+
+        .favorite:hover {
+            color: #f4511e;
+        }
+
+        /* ================= PRODUCT INFO ================= */
+
+        .product-info {
+            padding: 14px;
+        }
+
+        .category {
+            color: #999;
+            font-size: 11px;
+
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+
+            line-height: 1.35;
+
+            min-height: 38px;
+        }
+
+        .rating {
+            margin-top: 9px;
+
+            color: #777;
+            font-size: 11px;
+        }
+
+        .rating-stars {
+            color: #f59d00;
+            font-size: 12px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-top: 13px;
+        }
+
+        .old-price {
+            color: #999;
+            font-size: 11px;
+
+            text-decoration: line-through;
+
+            margin-bottom: 2px;
+        }
+
+        .price {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .add-button {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: #222;
+            color: #fff;
+
+            font-size: 19px;
+
+            cursor: pointer;
+
+            transition: background .2s;
+        }
+
+        .add-button:hover {
+            background: #f4511e;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1200px) {
+
+            .products {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 950px) {
+
+            header {
+                padding: 0 20px;
+            }
+
+            .header-link {
+                display: none;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                height: auto;
+
+                padding: 12px 15px;
+
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .search {
+                order: 3;
+                flex-basis: 100%;
+                max-width: none;
+            }
+
+            .header-right {
+                gap: 10px;
+            }
+
+            main {
+                padding: 20px 12px;
+            }
+
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                position: static;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .product-image {
+                height: 190px;
+            }
+
+            .product-info {
+                padding: 11px;
+            }
+
+            .product-name {
+                font-size: 13px;
+            }
+
+            .price {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        TECH<span>ZONE</span>
+    </div>
+
+
+    <div class="search">
+
+        <input
+            type="text"
+            placeholder="Поиск по товарам..."
+        >
+
+        
+
+    </div>
+
+
+    <div class="header-right">
+
+        <div class="header-link">
+            Избранное
+        </div>
+
+        <div class="header-link">
+            Войти
+        </div>
+
+        <div class="cart">
+            Корзина
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+
+    <div class="top-line">
+
+        <div>
+
+            <h1>
+                Каталог
+
+                <span class="products-count">
+                    128 товаров
+                </span>
+            </h1>
+
+        </div>
+
+
+        <select class="sort">
+
+            <option>
+                По популярности
+            </option>
+
+            <option>
+                Сначала дешевле
+            </option>
+
+            <option>
+                Сначала дороже
+            </option>
+
+            <option>
+                По рейтингу
+            </option>
+
+        </select>
+
+    </div>
+
+
+
+    <div class="catalog">
+
+
+        <!-- ================= FILTERS ================= -->
+
+        <aside class="filters">
+
+            <div class="filters-title">
+                Фильтры
+            </div>
+
+
+            <div class="filter-section">
+
+                <div class="filter-title">
+                    Категория
+                </div>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Смартфоны
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Ноутбуки
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Наушники
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Мониторы
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Компьютеры
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Аксессуары
+                </label>
+
+            </div>
+
+
+
+            <div class="filter-section">
+
+                <div class="filter-title">
+                    Цена, ₽
+                </div>
+
+
+                <div class="price-inputs">
+
+                    <input
+                        type="number"
+                        placeholder="От"
+                    >
+
+                    <input
+                        type="number"
+                        placeholder="До"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <div class="filter-section">
+
+                <div class="filter-title">
+                    Бренд
+                </div>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Apple
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Samsung
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Sony
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    ASUS
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    Xiaomi
+                </label>
+
+            </div>
+
+
+
+            <div class="filter-section">
+
+                <div class="filter-title">
+                    Рейтинг
+                </div>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    ★ 4.5 и выше
+                </label>
+
+
+                <label class="filter-option">
+                    <input type="checkbox">
+                    ★ 4.0 и выше
+                </label>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ================= PRODUCTS ================= -->
+
+        <section class="products">
+
+
+            <!-- ================= SMARTPHONE ================= -->
+
+            <article class="product">
+
+                <div class="sale">
+                    −15%
+                </div>
+
+                <div class="favorite">
+                    ♡
+                </div>
+
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=90"
+                        alt="Смартфон"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="category">
+                        Смартфоны
+                    </div>
+
+                    <div class="product-name">
+                        Smartphone Pro 256 GB
+                    </div>
+
+                    <div class="rating">
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        4.9 · 128 отзывов
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <div class="old-price">
+                                119 990 ₽
+                            </div>
+
+                            <div class="price">
+                                99 990 ₽
+                            </div>
+
+                        </div>
+
+
+                        <button class="add-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= LAPTOP ================= -->
+
+            <article class="product">
+
+                <div class="favorite">
+                    ♡
+                </div>
+
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=90"
+                        alt="Ноутбук"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="category">
+                        Ноутбуки
+                    </div>
+
+                    <div class="product-name">
+                        UltraBook Pro 14"
+                    </div>
+
+                    <div class="rating">
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        4.8 · 74 отзыва
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <div class="old-price">
+                                149 990 ₽
+                            </div>
+
+                            <div class="price">
+                                134 990 ₽
+                            </div>
+
+                        </div>
+
+
+                        <button class="add-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= HEADPHONES ================= -->
+
+            <article class="product">
+
+                <div class="sale">
+                    −20%
+                </div>
+
+                <div class="favorite">
+                    ♡
+                </div>
+
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=90"
+                        alt="Наушники"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="category">
+                        Наушники
+                    </div>
+
+                    <div class="product-name">
+                        Wireless Noise Cancelling
+                    </div>
+
+                    <div class="rating">
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        4.7 · 213 отзывов
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <div class="old-price">
+                                29 990 ₽
+                            </div>
+
+                            <div class="price">
+                                23 990 ₽
+                            </div>
+
+                        </div>
+
+
+                        <button class="add-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= MONITOR ================= -->
+
+            <article class="product">
+
+                <div class="favorite">
+                    ♡
+                </div>
+
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1000&q=90"
+                        alt="Монитор"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="category">
+                        Мониторы
+                    </div>
+
+                    <div class="product-name">
+                        Gaming Monitor 27" 165Hz
+                    </div>
+
+                    <div class="rating">
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        4.8 · 91 отзыв
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <div class="price">
+                                39 990 ₽
+                            </div>
+
+                        </div>
+
+
+                        <button class="add-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= MOUSE ================= -->
+
+            <article class="product">
+
+                <div class="sale">
+                    −10%
+                </div>
+
+                <div class="favorite">
+                    ♡
+                </div>
+
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1000&q=90"
+                        alt="Игровая мышь"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="category">
+                        Аксессуары
+                    </div>
+
+                    <div class="product-name">
+                        Gaming Mouse X Pro
+                    </div>
+
+                    <div class="rating">
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        4.6 · 56 отзывов
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <div class="old-price">
+                                7 990 ₽
+                            </div>
+
+                            <div class="price">
+                                6 990 ₽
+                            </div>
+
+                        </div>
+
+
+                        <button class="add-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= PC ================= -->
+
+            <article class="product">
+
+                <div class="favorite">
+                    ♡
+                </div>
+
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1000&q=90"
+                        alt="Игровой компьютер"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="category">
+                        Компьютеры
+                    </div>
+
+                    <div class="product-name">
+                        Gaming PC RTX Edition
+                    </div>
+
+                    <div class="rating">
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        4.9 · 38 отзывов
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <div class="price">
+                                159 990 ₽
+                            </div>
+
+                        </div>
+
+
+                        <button class="add-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+</body>
+</html>
