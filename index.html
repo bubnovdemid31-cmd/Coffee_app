@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TECHZONE — магазин техники</title>
+    <title>iPhone 17 Pro — TECHZONE</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -72,7 +73,6 @@
             top: 10px;
 
             color: #777;
-            font-size: 16px;
         }
 
         .header-right {
@@ -102,323 +102,308 @@
             cursor: pointer;
         }
 
+
         /* ================= MAIN ================= */
 
         main {
             width: 100%;
-            max-width: none;
-
-            margin: 0;
-            padding: 30px 40px;
+            padding: 25px 40px 60px;
         }
 
-        .top-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .breadcrumbs {
+            color: #888;
+            font-size: 12px;
 
             margin-bottom: 20px;
         }
 
-        .top-line h1 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .products-count {
-            color: #888;
-            font-size: 13px;
-            margin-left: 10px;
-        }
-
-        .sort {
-            height: 35px;
-
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 6px;
-
-            padding: 0 10px;
-
-            font-size: 13px;
+        .breadcrumbs span {
             color: #444;
-
-            outline: none;
         }
 
-        /* ================= CATALOG ================= */
 
-        .catalog {
+        /* ================= PRODUCT ================= */
+
+        .product-page {
             width: 100%;
 
-            display: grid;
-            grid-template-columns: 220px minmax(0, 1fr);
-
-            gap: 25px;
-        }
-
-        /* ================= FILTER ================= */
-
-        .filters {
             background: #fff;
-
-            border: 1px solid #e2e2e2;
-            border-radius: 8px;
-
-            padding: 18px;
-
-            height: fit-content;
-
-            position: sticky;
-            top: 15px;
-        }
-
-        .filters-title {
-            font-size: 16px;
-            font-weight: 600;
-
-            padding-bottom: 15px;
-
-            border-bottom: 1px solid #eee;
-
-            margin-bottom: 18px;
-        }
-
-        .filter-section {
-            padding-bottom: 17px;
-            margin-bottom: 17px;
-
-            border-bottom: 1px solid #eee;
-        }
-
-        .filter-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .filter-title {
-            font-size: 13px;
-            font-weight: 600;
-
-            margin-bottom: 12px;
-        }
-
-        .filter-option {
-            display: flex;
-            align-items: center;
-
-            gap: 8px;
-
-            margin: 9px 0;
-
-            color: #555;
-            font-size: 13px;
-
-            cursor: pointer;
-        }
-
-        .filter-option input {
-            width: 14px;
-            height: 14px;
-        }
-
-        .price-inputs {
-            display: flex;
-            gap: 7px;
-        }
-
-        .price-inputs input {
-            width: 50%;
-            height: 32px;
-
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 10px;
 
-            padding: 0 7px;
-
-            font-size: 12px;
-            outline: none;
-        }
-
-        /* ================= PRODUCTS ================= */
-
-        .products {
-            width: 100%;
+            padding: 30px;
 
             display: grid;
+            grid-template-columns: minmax(500px, 1.2fr) minmax(400px, .8fr);
 
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
+            gap: 50px;
+        }
+
+
+        /* ================= GALLERY ================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 80px 1fr;
 
             gap: 15px;
         }
 
-        .product {
-            background: #fff;
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-            border: 1px solid #e2e2e2;
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+
+            border: 1px solid #ddd;
+            border-radius: 7px;
+
+            background: #fafafa;
+
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .thumbnail.active {
+            border: 2px solid #222;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 620px;
+
+            background: #f5f5f5;
+
             border-radius: 8px;
 
             overflow: hidden;
 
-            position: relative;
-
-            transition:
-                box-shadow .2s,
-                transform .2s;
-        }
-
-        .product:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 7px 20px rgba(0, 0, 0, .08);
-        }
-
-        /* ================= PRODUCT IMAGE ================= */
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-
-            background: #eee;
-
-            display: block;
-
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-            /*
-                COVER заполняет всю карточку.
-                Теперь белых полос по бокам не будет.
-            */
-            object-fit: cover;
-
-            object-position: center;
-
-            transition: transform .25s;
-        }
-
-        .product:hover .product-image img {
-            transform: scale(1.04);
-        }
-
-        /* ================= LABELS ================= */
-
-        .sale {
-            position: absolute;
-
-            top: 10px;
-            left: 10px;
-
-            background: #f4511e;
-            color: #fff;
-
-            padding: 4px 7px;
-
-            font-size: 10px;
-            font-weight: 600;
-
-            border-radius: 4px;
-
-            z-index: 5;
-        }
-
-        .favorite {
-            position: absolute;
-
-            top: 9px;
-            right: 9px;
-
-            width: 29px;
-            height: 29px;
-
-            background: #fff;
-
-            border: 1px solid #ddd;
-            border-radius: 50%;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
-            font-size: 15px;
-            color: #777;
-
-            cursor: pointer;
-
-            z-index: 5;
         }
 
-        .favorite:hover {
-            color: #f4511e;
+        .main-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
         }
+
 
         /* ================= PRODUCT INFO ================= */
 
         .product-info {
-            padding: 14px;
+            padding: 5px 10px;
         }
 
-        .category {
-            color: #999;
-            font-size: 11px;
+        .brand {
+            color: #888;
+            font-size: 12px;
 
-            margin-bottom: 6px;
+            margin-bottom: 7px;
         }
 
-        .product-name {
-            font-size: 14px;
+        .product-title {
+            font-size: 30px;
             font-weight: 600;
 
-            line-height: 1.35;
+            letter-spacing: -0.5px;
 
-            min-height: 38px;
+            margin-bottom: 10px;
         }
 
         .rating {
-            margin-top: 9px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-            color: #777;
-            font-size: 11px;
+            margin-bottom: 22px;
         }
 
-        .rating-stars {
+        .stars {
             color: #f59d00;
+            font-size: 14px;
+        }
+
+        .reviews {
+            color: #777;
             font-size: 12px;
         }
 
-        .product-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        .description {
+            color: #555;
 
-            margin-top: 13px;
+            font-size: 14px;
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= PRICE ================= */
+
+        .price-box {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+
+            padding: 20px 0;
+            margin-bottom: 22px;
         }
 
         .old-price {
             color: #999;
-            font-size: 11px;
 
+            font-size: 13px;
             text-decoration: line-through;
 
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .price {
-            font-size: 17px;
+            font-size: 30px;
             font-weight: 700;
         }
 
-        .add-button {
+        .delivery {
+            color: #238636;
+            font-size: 12px;
+
+            margin-top: 7px;
+        }
+
+
+        /* ================= OPTIONS ================= */
+
+        .option {
+            margin-bottom: 22px;
+        }
+
+        .option-title {
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 10px;
+        }
+
+        .option-title span {
+            font-weight: normal;
+            color: #777;
+        }
+
+
+        /* MEMORY */
+
+        .memory-list {
+            display: flex;
+            gap: 8px;
+        }
+
+        .memory {
+            background: #fff;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            padding: 9px 15px;
+
+            font-size: 13px;
+
+            cursor: pointer;
+        }
+
+        .memory.active {
+            border: 2px solid #222;
+            padding: 8px 14px;
+        }
+
+
+        /* COLORS */
+
+        .colors {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color {
             width: 34px;
             height: 34px;
+
+            border-radius: 50%;
+
+            border: 2px solid #ddd;
+
+            cursor: pointer;
+        }
+
+        .color.active {
+            outline: 2px solid #222;
+            outline-offset: 3px;
+        }
+
+        .silver {
+            background: #d9d9d9;
+        }
+
+        .orange {
+            background: #c96d3b;
+        }
+
+        .blue {
+            background: #263a56;
+        }
+
+
+        /* ================= BUY ================= */
+
+        .buy-row {
+            display: flex;
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .quantity {
+            height: 46px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity button {
+            width: 35px;
+            height: 100%;
+
+            border: none;
+            background: transparent;
+
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .quantity span {
+            width: 28px;
+            text-align: center;
+        }
+
+        .buy-button {
+            flex: 1;
+
+            height: 46px;
 
             border: none;
             border-radius: 6px;
@@ -426,40 +411,100 @@
             background: #222;
             color: #fff;
 
-            font-size: 19px;
+            font-size: 14px;
+            font-weight: 600;
 
             cursor: pointer;
-
-            transition: background .2s;
         }
 
-        .add-button:hover {
+        .buy-button:hover {
             background: #f4511e;
         }
 
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            margin-top: 25px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            border-top: 1px solid #eee;
+        }
+
+        .feature {
+            padding: 15px 0;
+
+            border-bottom: 1px solid #eee;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .feature:nth-child(odd) {
+            margin-right: 15px;
+        }
+
+        .feature-name {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .feature-value {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        /* ================= DESCRIPTION ================= */
+
+        .details {
+            margin-top: 25px;
+
+            background: #fff;
+
+            border: 1px solid #ddd;
+            border-radius: 10px;
+
+            padding: 30px;
+        }
+
+        .details h2 {
+            font-size: 20px;
+            font-weight: 600;
+
+            margin-bottom: 18px;
+        }
+
+        .details p {
+            color: #555;
+
+            line-height: 1.7;
+
+            max-width: 1000px;
+        }
+
+
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1000px) {
 
-            .products {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+            .product-page {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 500px;
+            }
+
+            .product-info {
+                padding: 0;
             }
         }
 
-        @media (max-width: 950px) {
-
-            header {
-                padding: 0 20px;
-            }
-
-            .header-link {
-                display: none;
-            }
-
-            .products {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
 
         @media (max-width: 700px) {
 
@@ -478,52 +523,39 @@
                 max-width: none;
             }
 
-            .header-right {
-                gap: 10px;
+            .header-link {
+                display: none;
             }
 
             main {
-                padding: 20px 12px;
+                padding: 15px;
             }
 
-            .catalog {
-                grid-template-columns: 1fr;
+            .product-page {
+                padding: 15px;
+
+                gap: 25px;
             }
 
-            .filters {
-                position: static;
+            .gallery {
+                grid-template-columns: 55px 1fr;
             }
 
-            .products {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 10px;
+            .thumbnail {
+                width: 55px;
+                height: 55px;
             }
 
-            .product-image {
-                height: 190px;
+            .main-image {
+                height: 400px;
             }
 
-            .product-info {
-                padding: 11px;
-            }
-
-            .product-name {
-                font-size: 13px;
+            .product-title {
+                font-size: 24px;
             }
 
             .price {
-                font-size: 15px;
-            }
-        }
-
-        @media (max-width: 450px) {
-
-            .products {
-                grid-template-columns: 1fr;
-            }
-
-            .product-image {
-                height: 250px;
+                font-size: 25px;
             }
         }
 
@@ -550,7 +582,9 @@
             placeholder="Поиск по товарам..."
         >
 
-        
+        <div class="search-icon">
+            🔍
+        </div>
 
     </div>
 
@@ -580,607 +614,505 @@
 <main>
 
 
-    <div class="top-line">
+    <div class="breadcrumbs">
 
-        <div>
+        Главная
+        /
+        Смартфоны
+        /
+        <span>iPhone 17 Pro</span>
 
-            <h1>
-                Каталог
+    </div>
 
-                <span class="products-count">
-                    128 товаров
-                </span>
-            </h1>
+
+
+    <!-- ================= PRODUCT ================= -->
+
+    <section class="product-page">
+
+
+        <!-- ================= GALLERY ================= -->
+
+        <div class="gallery">
+
+
+            <div class="thumbnails">
+
+
+                <div
+                    class="thumbnail active"
+                    onclick="changeImage(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=90"
+                        alt="iPhone"
+                    >
+
+                </div>
+
+
+                <div
+                    class="thumbnail"
+                    onclick="changeImage(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=90"
+                        alt="iPhone"
+                    >
+
+                </div>
+
+
+                <div
+                    class="thumbnail"
+                    onclick="changeImage(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1603921326210-6edd2d60ca68?auto=format&fit=crop&w=1000&q=90"
+                        alt="iPhone"
+                    >
+
+                </div>
+
+
+                <div
+                    class="thumbnail"
+                    onclick="changeImage(this)"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1592286927505-2fd9f07f7b43?auto=format&fit=crop&w=1000&q=90"
+                        alt="iPhone"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="main-image">
+
+                <img
+                    id="mainProductImage"
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=90"
+                    alt="iPhone 17 Pro"
+                >
+
+            </div>
+
 
         </div>
 
 
-        <select class="sort">
 
-            <option>
-                По популярности
-            </option>
+        <!-- ================= INFO ================= -->
 
-            <option>
-                Сначала дешевле
-            </option>
-
-            <option>
-                Сначала дороже
-            </option>
-
-            <option>
-                По рейтингу
-            </option>
-
-        </select>
-
-    </div>
+        <div class="product-info">
 
 
-
-    <div class="catalog">
-
-
-        <!-- ================= FILTERS ================= -->
-
-        <aside class="filters">
-
-            <div class="filters-title">
-                Фильтры
+            <div class="brand">
+                Apple
             </div>
 
 
-            <div class="filter-section">
-
-                <div class="filter-title">
-                    Категория
-                </div>
+            <h1 class="product-title">
+                iPhone 17 Pro
+            </h1>
 
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Смартфоны
-                </label>
+            <div class="rating">
 
+                <span class="stars">
+                    ★★★★★
+                </span>
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Ноутбуки
-                </label>
+                <span>
+                    4.9
+                </span>
 
-
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Наушники
-                </label>
-
-
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Мониторы
-                </label>
-
-
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Компьютеры
-                </label>
-
-
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Аксессуары
-                </label>
+                <span class="reviews">
+                    247 отзывов
+                </span>
 
             </div>
 
 
+            <p class="description">
 
-            <div class="filter-section">
+                iPhone 17 Pro — смартфон с 6,3-дюймовым
+                Super Retina XDR OLED-дисплеем, чипом A19 Pro
+                и профессиональной системой камер.
+                Модель оснащена алюминиевым цельным корпусом,
+                Ceramic Shield 2 и USB-C.
 
-                <div class="filter-title">
-                    Цена, ₽
+            </p>
+
+
+
+            <!-- PRICE -->
+
+            <div class="price-box">
+
+                <div class="old-price">
+                    1 449 €
                 </div>
 
+                <div class="price">
+                    1 339 €
+                </div>
 
-                <div class="price-inputs">
-
-                    <input
-                        type="number"
-                        placeholder="От"
-                    >
-
-                    <input
-                        type="number"
-                        placeholder="До"
-                    >
-
+                <div class="delivery">
+                    ✓ В наличии · Доставка от 1 дня
                 </div>
 
             </div>
 
 
 
-            <div class="filter-section">
+            <!-- MEMORY -->
 
-                <div class="filter-title">
-                    Бренд
+            <div class="option">
+
+                <div class="option-title">
+                    Память:
+                    <span>256 ГБ</span>
                 </div>
 
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Apple
-                </label>
+                <div class="memory-list">
 
+                    <button
+                        class="memory active"
+                        onclick="selectMemory(this)"
+                    >
+                        256 ГБ
+                    </button>
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Samsung
-                </label>
+                    <button
+                        class="memory"
+                        onclick="selectMemory(this)"
+                    >
+                        512 ГБ
+                    </button>
 
+                    <button
+                        class="memory"
+                        onclick="selectMemory(this)"
+                    >
+                        1 ТБ
+                    </button>
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Sony
-                </label>
-
-
-                <label class="filter-option">
-                    <input type="checkbox">
-                    ASUS
-                </label>
-
-
-                <label class="filter-option">
-                    <input type="checkbox">
-                    Xiaomi
-                </label>
+                </div>
 
             </div>
 
 
 
-            <div class="filter-section">
+            <!-- COLOR -->
 
-                <div class="filter-title">
-                    Рейтинг
+            <div class="option">
+
+                <div class="option-title">
+                    Цвет:
+                    <span id="colorName">
+                        Космический оранжевый
+                    </span>
                 </div>
 
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    ★ 4.5 и выше
-                </label>
+                <div class="colors">
+
+                    <button
+                        class="color silver"
+                        title="Silver"
+                        onclick="selectColor(this, 'Серебристый')"
+                    ></button>
 
 
-                <label class="filter-option">
-                    <input type="checkbox">
-                    ★ 4.0 и выше
-                </label>
+                    <button
+                        class="color orange active"
+                        title="Cosmic Orange"
+                        onclick="selectColor(this, 'Космический оранжевый')"
+                    ></button>
+
+
+                    <button
+                        class="color blue"
+                        title="Deep Blue"
+                        onclick="selectColor(this, 'Глубокий синий')"
+                    ></button>
+
+                </div>
 
             </div>
 
-        </aside>
 
 
+            <!-- BUY -->
 
-        <!-- ================= PRODUCTS ================= -->
-
-        <section class="products">
-
-
-            <!-- ================= SMARTPHONE ================= -->
-
-            <article class="product">
-
-                <div class="sale">
-                    −15%
-                </div>
-
-                <div class="favorite">
-                    ♡
-                </div>
+            <div class="buy-row">
 
 
-                <div class="product-image">
+                <div class="quantity">
 
-                    <img
-                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=90"
-                        alt="Смартфон"
-                    >
+                    <button onclick="changeQuantity(-1)">
+                        −
+                    </button>
+
+                    <span id="quantity">
+                        1
+                    </span>
+
+                    <button onclick="changeQuantity(1)">
+                        +
+                    </button>
 
                 </div>
 
 
-                <div class="product-info">
+                <button
+                    class="buy-button"
+                    onclick="addToCart()"
+                >
+                    Добавить в корзину
+                </button>
 
-                    <div class="category">
-                        Смартфоны
-                    </div>
-
-                    <div class="product-name">
-                        Smartphone Pro 256 GB
-                    </div>
-
-                    <div class="rating">
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-                        4.9 · 128 отзывов
-
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div>
-
-                            <div class="old-price">
-                                119 990 ₽
-                            </div>
-
-                            <div class="price">
-                                99 990 ₽
-                            </div>
-
-                        </div>
-
-
-                        <button class="add-button">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
+            </div>
 
 
 
-            <!-- ================= LAPTOP ================= -->
+            <!-- FEATURES -->
 
-            <article class="product">
-
-                <div class="favorite">
-                    ♡
-                </div>
+            <div class="features">
 
 
-                <div class="product-image">
+                <div class="feature">
 
-                    <img
-                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=90"
-                        alt="Ноутбук"
-                    >
+                    <span class="feature-name">
+                        Дисплей
+                    </span>
+
+                    <span class="feature-value">
+                        6.3" OLED
+                    </span>
 
                 </div>
 
 
-                <div class="product-info">
+                <div class="feature">
 
-                    <div class="category">
-                        Ноутбуки
-                    </div>
+                    <span class="feature-name">
+                        Процессор
+                    </span>
 
-                    <div class="product-name">
-                        UltraBook Pro 14"
-                    </div>
-
-                    <div class="rating">
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-                        4.8 · 74 отзыва
-
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div>
-
-                            <div class="old-price">
-                                149 990 ₽
-                            </div>
-
-                            <div class="price">
-                                134 990 ₽
-                            </div>
-
-                        </div>
-
-
-                        <button class="add-button">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- ================= HEADPHONES ================= -->
-
-            <article class="product">
-
-                <div class="sale">
-                    −20%
-                </div>
-
-                <div class="favorite">
-                    ♡
-                </div>
-
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=90"
-                        alt="Наушники"
-                    >
+                    <span class="feature-value">
+                        A19 Pro
+                    </span>
 
                 </div>
 
 
-                <div class="product-info">
+                <div class="feature">
 
-                    <div class="category">
-                        Наушники
-                    </div>
+                    <span class="feature-name">
+                        Основная камера
+                    </span>
 
-                    <div class="product-name">
-                        Wireless Noise Cancelling
-                    </div>
-
-                    <div class="rating">
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-                        4.7 · 213 отзывов
-
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div>
-
-                            <div class="old-price">
-                                29 990 ₽
-                            </div>
-
-                            <div class="price">
-                                23 990 ₽
-                            </div>
-
-                        </div>
-
-
-                        <button class="add-button">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- ================= MONITOR ================= -->
-
-            <article class="product">
-
-                <div class="favorite">
-                    ♡
-                </div>
-
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1000&q=90"
-                        alt="Монитор"
-                    >
+                    <span class="feature-value">
+                        48 МП
+                    </span>
 
                 </div>
 
 
-                <div class="product-info">
+                <div class="feature">
 
-                    <div class="category">
-                        Мониторы
-                    </div>
+                    <span class="feature-name">
+                        Разъём
+                    </span>
 
-                    <div class="product-name">
-                        Gaming Monitor 27" 165Hz
-                    </div>
-
-                    <div class="rating">
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-                        4.8 · 91 отзыв
-
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div>
-
-                            <div class="price">
-                                39 990 ₽
-                            </div>
-
-                        </div>
-
-
-                        <button class="add-button">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- ================= MOUSE ================= -->
-
-            <article class="product">
-
-                <div class="sale">
-                    −10%
-                </div>
-
-                <div class="favorite">
-                    ♡
-                </div>
-
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1000&q=90"
-                        alt="Игровая мышь"
-                    >
+                    <span class="feature-value">
+                        USB-C
+                    </span>
 
                 </div>
 
 
-                <div class="product-info">
+                <div class="feature">
 
-                    <div class="category">
-                        Аксессуары
-                    </div>
+                    <span class="feature-name">
+                        Вес
+                    </span>
 
-                    <div class="product-name">
-                        Gaming Mouse X Pro
-                    </div>
-
-                    <div class="rating">
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-                        4.6 · 56 отзывов
-
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div>
-
-                            <div class="old-price">
-                                7 990 ₽
-                            </div>
-
-                            <div class="price">
-                                6 990 ₽
-                            </div>
-
-                        </div>
-
-
-                        <button class="add-button">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- ================= PC ================= -->
-
-            <article class="product">
-
-                <div class="favorite">
-                    ♡
-                </div>
-
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1000&q=90"
-                        alt="Игровой компьютер"
-                    >
+                    <span class="feature-value">
+                        206 г
+                    </span>
 
                 </div>
 
 
-                <div class="product-info">
+                <div class="feature">
 
-                    <div class="category">
-                        Компьютеры
-                    </div>
+                    <span class="feature-name">
+                        Защита
+                    </span>
 
-                    <div class="product-name">
-                        Gaming PC RTX Edition
-                    </div>
-
-                    <div class="rating">
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-                        4.9 · 38 отзывов
-
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div>
-
-                            <div class="price">
-                                159 990 ₽
-                            </div>
-
-                        </div>
-
-
-                        <button class="add-button">
-                            +
-                        </button>
-
-                    </div>
+                    <span class="feature-value">
+                        Ceramic Shield
+                    </span>
 
                 </div>
 
-            </article>
+
+            </div>
 
 
-        </section>
+        </div>
 
-    </div>
+    </section>
+
+
+
+    <!-- ================= DESCRIPTION ================= -->
+
+    <section class="details">
+
+        <h2>
+            О товаре
+        </h2>
+
+        <p>
+
+            iPhone 17 Pro сочетает цельный алюминиевый корпус,
+            Super Retina XDR OLED-дисплей и производительность
+            чипа A19 Pro. Основная система камер включает три
+            48-мегапиксельные Fusion-камеры: основную,
+            сверхширокоугольную и телефото. Фронтальная камера
+            имеет разрешение 18 МП и поддерживает Center Stage.
+
+            <br><br>
+
+            Смартфон выпускается в цветах Silver,
+            Cosmic Orange и Deep Blue. Доступны варианты
+            накопителя 256 ГБ, 512 ГБ и 1 ТБ.
+
+        </p>
+
+    </section>
+
 
 </main>
+
+
+
+<script>
+
+    /* ================= GALLERY ================= */
+
+    function changeImage(element) {
+
+        const image =
+            element.querySelector("img");
+
+        const mainImage =
+            document.getElementById("mainProductImage");
+
+        mainImage.src = image.src;
+
+
+        document
+            .querySelectorAll(".thumbnail")
+            .forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+
+        element.classList.add("active");
+    }
+
+
+
+    /* ================= MEMORY ================= */
+
+    function selectMemory(element) {
+
+        document
+            .querySelectorAll(".memory")
+            .forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+
+        element.classList.add("active");
+    }
+
+
+
+    /* ================= COLOR ================= */
+
+    function selectColor(element, name) {
+
+        document
+            .querySelectorAll(".color")
+            .forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+
+        element.classList.add("active");
+
+        document
+            .getElementById("colorName")
+            .textContent = name;
+    }
+
+
+
+    /* ================= QUANTITY ================= */
+
+    let quantity = 1;
+
+
+    function changeQuantity(value) {
+
+        quantity += value;
+
+
+        if (quantity < 1) {
+            quantity = 1;
+        }
+
+
+        document
+            .getElementById("quantity")
+            .textContent = quantity;
+    }
+
+
+
+    /* ================= CART ================= */
+
+    function addToCart() {
+
+        alert(
+            "iPhone 17 Pro добавлен в корзину!"
+        );
+
+    }
+
+</script>
+
 
 </body>
 </html>
